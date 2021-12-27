@@ -3,10 +3,25 @@ from django.shortcuts import render
 
 # Create your views here.
 
+rooms_list = [
+    {'id': 1, 'name': 'Lets Learn Django'},
+    {'id': 2, 'name': 'Python is fun'},
+    {'id': 3, 'name': 'Design with me'},
+]
+
 
 def home(request):
-    return render(request, 'home.html')
+    context = {'rooms_list': rooms_list}
+    return render(request, 'base/home.html', context)
 
 
-def rooms(request):
-    return render(request, 'room.html')
+def rooms(request, pk):
+    room = None
+
+    for r in rooms_list:
+        if r['id'] == int(pk):
+            room = r
+            break
+    context = {'room': room}
+
+    return render(request, 'base/room.html', context)
