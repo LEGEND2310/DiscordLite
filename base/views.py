@@ -15,7 +15,7 @@ def home(request):
     return render(request, 'base/home.html', context)
 
 
-def rooms(request, pk):
+def room(request, pk):
     room = None
 
     for r in rooms_list:
