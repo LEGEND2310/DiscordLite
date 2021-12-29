@@ -10,10 +10,9 @@
 <h1>Home Template</h1>
 
 <div class="home-container">
-
     <div>
         <h3>Browse Topics</h3>
-        <hr>
+        <hr />
 
         <div>
             <a href="{% url 'home' %}">All</a>
@@ -31,8 +30,10 @@
         <div>
             {% for room in rooms_list %}
             <div>
+                {% if request.user == room.host %}
                 <a href="{% url 'update-room' room.id %}">Edit</a>
                 <a href="{% url 'delete-room' room.id %}">Delete</a>
+                {% endif %}
                 <span>@{{room.host.username}}</span>
                 <h5>
                     {{room.id}} --
